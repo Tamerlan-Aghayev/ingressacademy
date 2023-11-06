@@ -15,7 +15,7 @@
     <description>ingressDB</description>
     <properties>
         <java.version>11</java.version>
-        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+<!--        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>-->
     </properties>
     <dependencies>
         <dependency>
@@ -29,6 +29,25 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.4.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+        <version>2.3.7.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-jwt</artifactId>
+        <version>1.1.0.RELEASE</version>
+    </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -47,8 +66,34 @@
 
     <build>
         <plugins>
-
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.company.IngressDbApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version> <!-- Use the latest version -->
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
