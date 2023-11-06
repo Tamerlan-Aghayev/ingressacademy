@@ -18,6 +18,8 @@ public class StudentService {
     public Students getStudentsByUserId(Users user){
         return studentRepository.getStudentsByUserId(user);
     }
-
+    public Students getByName(String name){
+        return studentRepository.getSByName(name);
+    }
 
 }

@@ -20,7 +20,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources
-                .resourceId("elibrary")
+                .resourceId("ingress")
                 .tokenServices(tokenServices);
     }
 
@@ -46,6 +46,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests().antMatchers("/login").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/registration/author").hasAnyAuthority("Author")
+                .and()
+                .authorizeRequests().antMatchers("students/book/reading").hasAnyAuthority("Student")
                 .and()
                 .authorizeRequests().antMatchers("/registration/student").hasAnyAuthority("Student")
                 .antMatchers("/actuator/**", "/api-docs/**").permitAll()

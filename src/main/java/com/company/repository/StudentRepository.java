@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository extends JpaRepository<Students, Integer> {
     @Query("select s from Students s where s.usersByUserid=:user")
     Students getStudentsByUserId(@Param("user") Users user);
+
+    @Query("select s from Students s where s.name=:name")
+    Students getSByName(@Param("name") String name);
 }

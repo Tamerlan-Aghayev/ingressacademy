@@ -33,4 +33,7 @@ public class BookService {
     public Books getBooksByNameAndAuthor(String name, Authors author){
         return bookRepository.getByNameAndAuthor(name, author);
     }
+    public void startReading(Students student, String name){
+        bookRepository.startReading(student, name);
+    }
 }

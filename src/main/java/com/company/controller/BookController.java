@@ -3,15 +3,14 @@ package com.company.controller;
 import com.company.data.AuthorBookData;
 import com.company.dto.BookDTO;
 import com.company.dto.ResponseDTO;
+import com.company.dto.StudentDTO;
 import com.company.entity.Authors;
 import com.company.entity.Books;
 import com.company.entity.Notification;
 import com.company.entity.Students;
-import com.company.service.AuthorService;
-import com.company.service.BookService;
-import com.company.service.NotificationService;
-import com.company.service.SubscriptionsService;
+import com.company.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +22,8 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
+    @Autowired
+    private StudentService studentService;
     @Autowired
     private AuthorService authorService;
     @Autowired
@@ -90,5 +91,12 @@ public class BookController {
         }catch (Exception ex){
             return ResponseEntity.ok(new ResponseDTO("error"));
         }
+    }
+    @PostMapping("students/book/reading")
+    public ResponseEntity<ResponseDTO> startReading(@RequestParam("student_name") String studentName, @RequestParam ("book_name") String bookName){
+        Students student=studentService.getByName(studentName);
+        BookDTO dto=new BookDTO(bookService.getByName(bookName));
+        bookService.startReading(student, bookName);
+        return ResponseEntity.ok(new ResponseDTO(dto, "success"));
     }
 }
