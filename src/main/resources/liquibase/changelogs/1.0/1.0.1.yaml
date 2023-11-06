@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create table users - 1698987124966-7
+      author: Tamerlan Aghayev
+      changes:
+        - createTable:
+            tableName: oauth_access_token
+            columns:
+              - column:
+                  name: authentication_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: token_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: token
+                  type: bytea
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authentication
+                  type: bytea
+                  constraints:
+                    nullable: false
+              - column:
+                  name: refresh_token
+                  type: varchar(255)
+  - changeSet:
+      id: Create table users - 9999918124966-7
+      author: yourname
+      changes:
+        - createTable:
+            tableName: oauth_refresh_token
+            columns:
+              - column:
+                  name: token_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: token
+                  type: bytea
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authentication
+                  type: bytea
+                  constraints:
+                    nullable: false

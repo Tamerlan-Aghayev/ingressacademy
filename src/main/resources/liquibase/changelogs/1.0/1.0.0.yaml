@@ -1,0 +1,211 @@
+databaseChangeLog:
+  - changeSet:
+        id: Create table users - 1698918124966-7
+        author: tamerlan (generated)
+        objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+        changes:
+          - createTable:
+              tableName: users
+              columns:
+                - column:
+                    name: userid
+                    type: BIGINT
+                    autoIncrement: true
+                    constraints:
+                      nullable: false
+                      primaryKey: true
+                      primaryKeyName: pk_users
+                - column:
+                    name: username
+                    type: VARCHAR(255)
+                - column:
+                    name: passwordHash
+                    type: TEXT
+                - column:
+                    name: usertype
+                    type: VARCHAR(255)
+  - changeSet:
+      id: Create table authors - 1698918124966-1
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: authors
+            columns:
+              - column:
+                  name: authorId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_authors
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: age
+                  type: INT
+              - column:
+                  name: userid
+                  type: INT
+                  constraints:
+                    foreignKeyName: FK_AUTHOR_ON_USER
+                    references: users(userid)
+  - changeSet:
+      id: Create table students - 1698918124966-5
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: students
+            columns:
+              - column:
+                  name: studentId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_students
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: age
+                  type: INT
+              - column:
+                  name: userid
+                  type: INT
+                  constraints:
+                    foreignKeyName: FK_STUDENT_ON_USER
+                    references: users(userid)
+  - changeSet:
+      id: Create table notification - 1698918124966-7
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: notification
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_notification
+              - column:
+                  name: studentId
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_NOTIFICATION_ON_STUDENT
+                    references: students(studentId)
+              - column:
+                  name: authorId
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_NOTIFICATION_ON_AUTHOR
+                    references: authors(authorId)
+              - column:
+                  name: message
+                  type: TEXT
+              - column:
+                  name: send_date
+                  type: TIMESTAMP
+
+
+
+  - changeSet:
+      id: Create table books - 1698918124966-2
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: books
+            columns:
+              - column:
+                  name: bookId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_books
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: studentId
+                  type: INT
+                  constraints:
+                    foreignKeyName: FK_BOOK_ON_STUDENT
+                    references: students(studentId)
+              - column:
+                  name: authorId
+                  type: INT
+                  constraints:
+                    foreignKeyName: FK_BOOK_ON_AUTHOR
+                    references: authors(authorId)
+  - changeSet:
+      id: Create table readingHistory - 1698918124966-4
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: readingHistory
+            columns:
+              - column:
+                  name: readingId
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_readingHistory
+              - column:
+                  name: readDate
+                  type: DATE
+              - column:
+                  name: studentId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_READINGHISTORY_ON_STUDENT
+                    references: students(studentId)
+              - column:
+                  name: bookId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_READINGHISTORY_ON_BOOK
+                    references: books(bookId)
+  - changeSet:
+      id: Create table subscriptions - 1698918124966-6
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: subscriptions
+            columns:
+              - column:
+                  name: subscriptionId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_subscriptions
+              - column:
+                  name: studentId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_SUBSCRIPTION_ON_STUDENT
+                    references: students(studentId)
+              - column:
+                  name: authorId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_SUBSCRIPTION_ON_AUTHOR
+                    references: authors(authorId)
