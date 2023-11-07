@@ -20,8 +20,7 @@ public class Books {
     @ManyToOne
     @JoinColumn(name = "authorid", referencedColumnName = "authorid")
     private Authors authorsByAuthorid;
-    @OneToMany(mappedBy = "booksByBookid")
-    private List<Readinghistory> readinghistoriesByBookid;
+
 
     public long getBookid() {
         return bookid;
@@ -70,11 +69,4 @@ public class Books {
         this.authorsByAuthorid = authorsByAuthorid;
     }
 
-    public List<Readinghistory> getReadinghistoriesByBookid() {
-        return readinghistoriesByBookid;
-    }
-
-    public void setReadinghistoriesByBookid(List<Readinghistory> readinghistoriesByBookid) {
-        this.readinghistoriesByBookid = readinghistoriesByBookid;
-    }
 }

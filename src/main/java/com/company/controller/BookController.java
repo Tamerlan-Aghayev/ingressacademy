@@ -4,10 +4,7 @@ import com.company.data.AuthorBookData;
 import com.company.dto.BookDTO;
 import com.company.dto.ResponseDTO;
 import com.company.dto.StudentDTO;
-import com.company.entity.Authors;
-import com.company.entity.Books;
-import com.company.entity.Notification;
-import com.company.entity.Students;
+import com.company.entity.*;
 import com.company.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -30,6 +27,7 @@ public class BookController {
     private SubscriptionsService subscriptionsService;
     @Autowired
     private NotificationService notificationService;
+;
     @GetMapping("/books")
     public ResponseEntity<ResponseDTO> getBooks(){
         List<Books> books=bookService.getBooks();

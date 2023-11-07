@@ -23,5 +23,7 @@ public interface BookRepository extends JpaRepository<Books, Integer> {
     @Modifying
     @Query("UPDATE Books b SET b.studentsByStudentid = :student WHERE b.name = :name")
     void startReading(@Param("student") Students student, @Param("name") String name);
+    @Query("select b.studentsByStudentid from Books b where b.name=:name")
+    List<Students> getReaders(@Param("name") String name);
 
 }

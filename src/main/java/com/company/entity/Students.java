@@ -21,8 +21,7 @@ public class Students {
     private List<Books> booksByStudentid;
     @OneToMany(mappedBy = "studentsByStudentid")
     private List<Notification> notificationsByStudentid;
-    @OneToMany(mappedBy = "studentsByStudentid")
-    private List<Readinghistory> readinghistoriesByStudentid;
+
     @ManyToOne
     @JoinColumn(name = "userid", referencedColumnName = "userid")
     private Users usersByUserid;
@@ -84,13 +83,6 @@ public class Students {
         this.notificationsByStudentid = notificationsByStudentid;
     }
 
-    public List<Readinghistory> getReadinghistoriesByStudentid() {
-        return readinghistoriesByStudentid;
-    }
-
-    public void setReadinghistoriesByStudentid(List<Readinghistory> readinghistoriesByStudentid) {
-        this.readinghistoriesByStudentid = readinghistoriesByStudentid;
-    }
 
     public Users getUsersByUserid() {
         return usersByUserid;

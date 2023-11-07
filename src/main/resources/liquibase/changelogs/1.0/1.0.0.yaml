@@ -150,37 +150,37 @@ databaseChangeLog:
                   constraints:
                     foreignKeyName: FK_BOOK_ON_AUTHOR
                     references: authors(authorId)
-  - changeSet:
-      id: Create table readingHistory - 1698918124966-4
-      author: tamerlan (generated)
-      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
-      changes:
-        - createTable:
-            tableName: readingHistory
-            columns:
-              - column:
-                  name: readingId
-                  type: INT
-                  autoIncrement: true
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: pk_readingHistory
-              - column:
-                  name: readDate
-                  type: DATE
-              - column:
-                  name: studentId
-                  type: BIGINT
-                  constraints:
-                    foreignKeyName: FK_READINGHISTORY_ON_STUDENT
-                    references: students(studentId)
-              - column:
-                  name: bookId
-                  type: BIGINT
-                  constraints:
-                    foreignKeyName: FK_READINGHISTORY_ON_BOOK
-                    references: books(bookId)
+#  - changeSet:
+#      id: Create table readingHistory - 1698918124966-4
+#      author: tamerlan (generated)
+#      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+#      changes:
+#        - createTable:
+#            tableName: readingHistory
+#            columns:
+#              - column:
+#                  name: readingId
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    nullable: false
+#                    primaryKey: true
+#                    primaryKeyName: pk_readingHistory
+#              - column:
+#                  name: readDate
+#                  type: DATE
+#              - column:
+#                  name: studentId
+#                  type: BIGINT
+#                  constraints:
+#                    foreignKeyName: FK_READINGHISTORY_ON_STUDENT
+#                    references: students(studentId)
+#              - column:
+#                  name: bookId
+#                  type: BIGINT
+#                  constraints:
+#                    foreignKeyName: FK_READINGHISTORY_ON_BOOK
+#                    references: books(bookId)
   - changeSet:
       id: Create table subscriptions - 1698918124966-6
       author: tamerlan (generated)

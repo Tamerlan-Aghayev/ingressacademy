@@ -37,7 +37,8 @@ public class LoginRegistrationController {
         Students student=new Students();
         StudentDTO studentDTO=dto.getStudentDTO();
         student.setName(studentDTO.getName());
-        student.setAge(student.getAge());
+        student.setAge(studentDTO.getAge());
+        student.setUsersByUserid(user);
         studentService.addStudent(student);
     }
     @PostMapping("/registration/author")
@@ -52,6 +53,7 @@ public class LoginRegistrationController {
         AuthorDTO authorDTO=dto.getAuthorDTO();
         author.setName(authorDTO.getName());
         author.setAge(authorDTO.getAge());
+        author.setUsersByUserid(user);
         authorService.addAuthor(author);
     }
     @GetMapping("/login")
