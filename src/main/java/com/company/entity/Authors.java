@@ -16,7 +16,9 @@ public class Authors {
     @Basic
     @Column(name = "age")
     private Integer age;
-
+    @Basic
+    @Column(name = "userid")
+    private Integer userid;
     @ManyToOne
     @JoinColumn(name = "userid", referencedColumnName = "userid")
     private Users usersByUserid;
@@ -51,18 +53,25 @@ public class Authors {
         this.age = age;
     }
 
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Authors authors = (Authors) o;
-        return authorid == authors.authorid && Objects.equals(name, authors.name) && Objects.equals(age, authors.age);
+        return authorid == authors.authorid && Objects.equals(name, authors.name) && Objects.equals(age, authors.age) && Objects.equals(userid, authors.userid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authorid, name, age);
+        return Objects.hash(authorid, name, age, userid);
     }
 
     public Users getUsersByUserid() {

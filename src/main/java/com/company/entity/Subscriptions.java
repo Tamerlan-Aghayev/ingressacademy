@@ -9,7 +9,12 @@ public class Subscriptions {
     @Id
     @Column(name = "subscriptionid")
     private long subscriptionid;
-
+    @Basic
+    @Column(name = "studentid")
+    private Long studentid;
+    @Basic
+    @Column(name = "authorid")
+    private Long authorid;
     @ManyToOne
     @JoinColumn(name = "studentid", referencedColumnName = "studentid")
     private Students studentsByStudentid;
@@ -25,18 +30,33 @@ public class Subscriptions {
         this.subscriptionid = subscriptionid;
     }
 
+    public Long getStudentid() {
+        return studentid;
+    }
+
+    public void setStudentid(Long studentid) {
+        this.studentid = studentid;
+    }
+
+    public Long getAuthorid() {
+        return authorid;
+    }
+
+    public void setAuthorid(Long authorid) {
+        this.authorid = authorid;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscriptions that = (Subscriptions) o;
-        return subscriptionid == that.subscriptionid ;
+        return subscriptionid == that.subscriptionid && Objects.equals(studentid, that.studentid) && Objects.equals(authorid, that.authorid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subscriptionid);
+        return Objects.hash(subscriptionid, studentid, authorid);
     }
 
     public Students getStudentsByStudentid() {

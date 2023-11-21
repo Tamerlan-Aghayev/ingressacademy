@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create table readingHistory - 1698918124966-4
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: readingHistory
+            columns:
+              - column:
+                  name: readingId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_readingHistory
+
+              - column:
+                  name: studentId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_READINGHISTORY_ON_STUDENT
+                    references: students(studentId)
+              - column:
+                  name: bookId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_READINGHISTORY_ON_BOOK
+                    references: books(bookId)

@@ -41,7 +41,7 @@ databaseChangeLog:
                   type: varchar(255)
   - changeSet:
       id: Create table users - 9999918124966-7
-      author: yourname
+      author: Tamerlan Aghayev
       changes:
         - createTable:
             tableName: oauth_refresh_token
