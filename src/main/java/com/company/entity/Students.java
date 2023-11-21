@@ -2,6 +2,7 @@ package com.company.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +17,7 @@ public class Students {
     @Basic
     @Column(name = "age")
     private Integer age;
-    @Basic
-    @Column(name = "userid")
-    private Integer userid;
+
     @OneToMany(mappedBy = "studentsByStudentid")
     private List<Books> booksByStudentid;
     @OneToMany(mappedBy = "studentsByStudentid")
@@ -30,6 +29,9 @@ public class Students {
     private Users usersByUserid;
     @OneToMany(mappedBy = "studentsByStudentid")
     private List<Subscriptions> subscriptionsByStudentid;
+
+    @OneToMany(mappedBy = "studentsByStudentid")
+    private List<Studentbook> studentbooksByStudentid;
 
     public long getStudentid() {
         return studentid;
@@ -55,25 +57,17 @@ public class Students {
         this.age = age;
     }
 
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Students students = (Students) o;
-        return studentid == students.studentid && Objects.equals(name, students.name) && Objects.equals(age, students.age) && Objects.equals(userid, students.userid);
+        return studentid == students.studentid && Objects.equals(name, students.name) && Objects.equals(age, students.age) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studentid, name, age, userid);
+        return Objects.hash(studentid, name, age);
     }
 
     public List<Books> getBooksByStudentid() {
@@ -84,6 +78,7 @@ public class Students {
         this.booksByStudentid = booksByStudentid;
     }
 
+
     public List<Notification> getNotificationsByStudentid() {
         return notificationsByStudentid;
     }
@@ -92,6 +87,8 @@ public class Students {
         this.notificationsByStudentid = notificationsByStudentid;
     }
 
+
+
     public List<Readinghistory> getReadinghistoriesByStudentid() {
         return readinghistoriesByStudentid;
     }
@@ -99,6 +96,8 @@ public class Students {
     public void setReadinghistoriesByStudentid(List<Readinghistory> readinghistoriesByStudentid) {
         this.readinghistoriesByStudentid = readinghistoriesByStudentid;
     }
+
+
 
     public Users getUsersByUserid() {
         return usersByUserid;
@@ -114,5 +113,17 @@ public class Students {
 
     public void setSubscriptionsByStudentid(List<Subscriptions> subscriptionsByStudentid) {
         this.subscriptionsByStudentid = subscriptionsByStudentid;
+    }
+
+
+
+
+
+    public List<Studentbook> getStudentbooksByStudentid() {
+        return studentbooksByStudentid;
+    }
+
+    public void setStudentbooksByStudentid(List<Studentbook> studentbooksByStudentid) {
+        this.studentbooksByStudentid = studentbooksByStudentid;
     }
 }

@@ -7,6 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "oauth_access_token", schema = "public", catalog = "library")
 public class OauthAccessToken {
+    @Basic
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "authentication_id")

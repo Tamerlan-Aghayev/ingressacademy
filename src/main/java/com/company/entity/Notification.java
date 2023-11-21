@@ -10,12 +10,7 @@ public class Notification {
     @Id
     @Column(name = "id")
     private int id;
-    @Basic
-    @Column(name = "studentid")
-    private int studentid;
-    @Basic
-    @Column(name = "authorid")
-    private int authorid;
+
     @Basic
     @Column(name = "message")
     private String message;
@@ -29,28 +24,13 @@ public class Notification {
     @JoinColumn(name = "authorid", referencedColumnName = "authorid", nullable = false)
     private Authors authorsByAuthorid;
 
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getStudentid() {
-        return studentid;
-    }
-
-    public void setStudentid(int studentid) {
-        this.studentid = studentid;
-    }
-
-    public int getAuthorid() {
-        return authorid;
-    }
-
-    public void setAuthorid(int authorid) {
-        this.authorid = authorid;
     }
 
     public String getMessage() {
@@ -74,12 +54,12 @@ public class Notification {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Notification that = (Notification) o;
-        return id == that.id && studentid == that.studentid && authorid == that.authorid && Objects.equals(message, that.message) && Objects.equals(sendDate, that.sendDate);
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, studentid, authorid, message, sendDate);
+        return Objects.hash(id,message, sendDate);
     }
 
     public Students getStudentsByStudentid() {
@@ -97,4 +77,6 @@ public class Notification {
     public void setAuthorsByAuthorid(Authors authorsByAuthorid) {
         this.authorsByAuthorid = authorsByAuthorid;
     }
+
+
 }

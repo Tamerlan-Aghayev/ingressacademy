@@ -20,9 +20,7 @@ public interface BookRepository extends JpaRepository<Books, Integer> {
     @Query("Select b from Books b where b.name=:name and b.authorsByAuthorid=:author")
     Books getByNameAndAuthor(@Param("name") String name, @Param("author")Authors author);
 
-    @Modifying
-    @Query("UPDATE Books b SET b.studentsByStudentid = :student WHERE b.name = :name")
-    void startReading(@Param("student") Students student, @Param("name") String name);
+
     @Query("select b.studentsByStudentid from Books b where b.name=:name")
     List<Students> getReaders(@Param("name") String name);
 

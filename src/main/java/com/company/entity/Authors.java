@@ -2,6 +2,7 @@ package com.company.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +17,7 @@ public class Authors {
     @Basic
     @Column(name = "age")
     private Integer age;
-    @Basic
-    @Column(name = "userid")
-    private Integer userid;
+
     @ManyToOne
     @JoinColumn(name = "userid", referencedColumnName = "userid")
     private Users usersByUserid;
@@ -28,6 +27,7 @@ public class Authors {
     private List<Notification> notificationsByAuthorid;
     @OneToMany(mappedBy = "authorsByAuthorid")
     private List<Subscriptions> subscriptionsByAuthorid;
+
 
     public long getAuthorid() {
         return authorid;
@@ -53,25 +53,17 @@ public class Authors {
         this.age = age;
     }
 
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Authors authors = (Authors) o;
-        return authorid == authors.authorid && Objects.equals(name, authors.name) && Objects.equals(age, authors.age) && Objects.equals(userid, authors.userid);
+        return authorid == authors.authorid && Objects.equals(name, authors.name) && Objects.equals(age, authors.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authorid, name, age, userid);
+        return Objects.hash(authorid, name, age);
     }
 
     public Users getUsersByUserid() {
@@ -90,6 +82,7 @@ public class Authors {
         this.booksByAuthorid = booksByAuthorid;
     }
 
+
     public List<Notification> getNotificationsByAuthorid() {
         return notificationsByAuthorid;
     }
@@ -98,11 +91,16 @@ public class Authors {
         this.notificationsByAuthorid = notificationsByAuthorid;
     }
 
+
     public List<Subscriptions> getSubscriptionsByAuthorid() {
         return subscriptionsByAuthorid;
     }
 
+
+
     public void setSubscriptionsByAuthorid(List<Subscriptions> subscriptionsByAuthorid) {
         this.subscriptionsByAuthorid = subscriptionsByAuthorid;
     }
+
+
 }

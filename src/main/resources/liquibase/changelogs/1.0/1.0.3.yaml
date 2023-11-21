@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create table studentBook - 1698919924966-4
+      author: tamerlan (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            tableName: studentBook
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_studentBook
+
+              - column:
+                  name: studentId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_STUDENTBOOK_ON_STUDENT
+                    references: students(studentId)
+              - column:
+                  name: bookId
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_STUDENTBOOK_ON_BOOK
+                    references: books(bookId)

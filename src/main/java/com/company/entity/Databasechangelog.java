@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 public class Databasechangelog {
+    @Basic
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")

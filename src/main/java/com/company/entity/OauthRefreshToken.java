@@ -7,6 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "oauth_refresh_token", schema = "public", catalog = "library")
 public class OauthRefreshToken {
+    @Basic
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "token_id")

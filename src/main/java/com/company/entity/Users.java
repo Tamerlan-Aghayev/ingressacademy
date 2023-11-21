@@ -2,6 +2,7 @@ package com.company.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -77,6 +78,7 @@ public class Users {
         this.authorsByUserid = authorsByUserid;
     }
 
+
     public List<Students> getStudentsByUserid() {
         return studentsByUserid;
     }
@@ -84,4 +86,5 @@ public class Users {
     public void setStudentsByUserid(List<Students> studentsByUserid) {
         this.studentsByUserid = studentsByUserid;
     }
+
 }

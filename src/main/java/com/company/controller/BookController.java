@@ -6,6 +6,8 @@ import com.company.dto.ResponseDTO;
 import com.company.dto.StudentDTO;
 import com.company.entity.*;
 import com.company.service.*;
+import liquibase.pro.packaged.B;
+import liquibase.pro.packaged.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,8 @@ public class BookController {
     private SubscriptionsService subscriptionsService;
     @Autowired
     private NotificationService notificationService;
+    @Autowired
+    private ReadingHistoryService readingHistoryService;
 ;
     @GetMapping("/books")
     public ResponseEntity<ResponseDTO> getBooks(){
@@ -93,8 +97,12 @@ public class BookController {
     @PostMapping("students/book/reading")
     public ResponseEntity<ResponseDTO> startReading(@RequestParam("student_name") String studentName, @RequestParam ("book_name") String bookName){
         Students student=studentService.getByName(studentName);
-        BookDTO dto=new BookDTO(bookService.getByName(bookName));
-        bookService.startReading(student, bookName);
-        return ResponseEntity.ok(new ResponseDTO(dto, "success"));
+        Books book=bookService.getByName(bookName);
+        Readinghistory readinghistory=new Readinghistory();
+        readinghistory.setStudentsByStudentid(student);
+        readinghistory.setBooksByBookid(book);
+        readingHistoryService.addHistory(readinghistory);
+
+        return ResponseEntity.ok(new ResponseDTO("success"));
     }
 }

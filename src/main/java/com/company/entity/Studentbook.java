@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Readinghistory {
+public class Studentbook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "readingid")
-    private long readingid;
+    @Column(name = "id")
+    private long id;
+
 
     @ManyToOne
     @JoinColumn(name = "studentid", referencedColumnName = "studentid")
@@ -17,26 +18,27 @@ public class Readinghistory {
     @JoinColumn(name = "bookid", referencedColumnName = "bookid")
     private Books booksByBookid;
 
-
-    public long getReadingid() {
-        return readingid;
+    public long getId() {
+        return id;
     }
 
-    public void setReadingid(long readingid) {
-        this.readingid = readingid;
+    public void setId(long id) {
+        this.id = id;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Readinghistory that = (Readinghistory) o;
-        return readingid == that.readingid;
+        Studentbook that = (Studentbook) o;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(readingid);
+        return Objects.hash(id);
     }
 
     public Students getStudentsByStudentid() {
@@ -55,5 +57,3 @@ public class Readinghistory {
         this.booksByBookid = booksByBookid;
     }
 }
-
-

@@ -34,9 +34,7 @@ public class BookService {
         return bookRepository.getByNameAndAuthor(name, author);
     }
     public void startReading(Students student, String name){
-        bookRepository.startReading(student, name);
+
     }
-    public List<Students> getReaders(String name){
-        return bookRepository.getReaders(name);
-    }
+
 }
